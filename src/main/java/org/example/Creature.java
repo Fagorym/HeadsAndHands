@@ -47,7 +47,7 @@ public class Creature {
                 .map(x -> ((x & Integer.MAX_VALUE) % 6) + 1)
                 .anyMatch(x -> x == 5 || x == 6);
         if (isAttackSuccess) {
-            attacked.actualHealth -= this.damage;
+            attacked.actualHealth -= new Random().nextInt(this.damage) + 1;
         }
         return isAttackSuccess ? this.damage : 0;
 
