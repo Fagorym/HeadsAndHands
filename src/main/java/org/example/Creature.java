@@ -42,14 +42,16 @@ public class Creature {
         if (modifier <= 0) {
             return -1;
         }
+        int actualDamage = 0;
         boolean isAttackSuccess = new Random()
                 .ints(modifier)
                 .map(x -> ((x & Integer.MAX_VALUE) % 6) + 1)
                 .anyMatch(x -> x == 5 || x == 6);
         if (isAttackSuccess) {
-            attacked.actualHealth -= new Random().nextInt(this.damage) + 1;
+            actualDamage = new Random().nextInt(this.damage) + 1;
+            attacked.actualHealth -= actualDamage;
         }
-        return isAttackSuccess ? this.damage : 0;
+        return actualDamage;
 
     }
 

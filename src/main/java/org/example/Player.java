@@ -1,5 +1,7 @@
 package org.example;
 
+import java.util.Random;
+
 public class Player extends Creature {
     private final String name;
     private int potionCount = 3;
@@ -25,10 +27,9 @@ public class Player extends Creature {
     @Override
     public Integer attack(Creature attacked) {
         Integer damage = super.attack(attacked);
-        if (damage == -1){
+        if (damage == -1) {
             System.out.println("Вы не можете пробить броню монстра");
-        }
-        else if (damage == 0) {
+        } else if (damage == 0) {
             System.out.println("Вы промахнулись");
         } else {
             System.out.println("Вы атаковали монстра на " + damage);
@@ -40,6 +41,18 @@ public class Player extends Creature {
     public void destroyArmor(Creature attacked) {
         System.out.println("Вы снизили броню существа на -1");
         attacked.setArmor(attacked.getArmor() - 1);
+    }
+
+    public boolean tryRun() {
+        Random random = new Random();
+        int score = random.nextInt(100);
+        if (score > 80) {
+            System.out.println("Вы успешно сбежали.");
+            return true;
+        } else {
+            System.out.println("Вы не смогли сбежать.");
+            return false;
+        }
     }
 
     @Override

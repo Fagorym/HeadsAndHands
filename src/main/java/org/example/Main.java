@@ -25,7 +25,7 @@ public class Main {
         System.out.println("Тогда тебе нужно придумать имя своему персонажу");
         String name = scanner.next();
         System.out.println("Тогда знакомься. Это твой персонаж. ");
-        Player hero = new Player(name, 20, 15, 20);
+        Player hero = new Player(name, 15, 15, 20);
         System.out.println(hero);
         int scoreCounter = 1;
         while (hero.getActualHealth() > 0) {
@@ -56,7 +56,7 @@ public class Main {
                 }
                 case 2 -> player.heal();
                 case 3 -> {
-                    ran = tryRun();
+                    ran = player.tryRun();
                     canRun = false;
                 }
 
@@ -88,18 +88,6 @@ public class Main {
         System.out.println("Вы встретили монстра, вот его характеристики:");
         System.out.println(monster);
         return monster;
-    }
-
-    private static boolean tryRun() {
-        Random random = new Random();
-        int score = random.nextInt(100);
-        if (score > 80) {
-            System.out.println("Вы успешно сбежали.");
-            return true;
-        } else {
-            System.out.println("Вы не смогли сбежать.");
-            return false;
-        }
     }
 
     private static Integer attackStage(Player player, Monster monster) {
